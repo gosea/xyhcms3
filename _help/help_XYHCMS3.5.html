@@ -1,0 +1,818 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>XYHCMS3.5模板标签大全</title>
+</head>
+<body>
+
+<p style="color:red;">
+    说明：本标签大全只适合XYHCMS3.5及以上</p>
+    <p style="color:red;">
+    其他版本请点击下面切换</p>
+	<p style="color:red;"><a href="http://www.xyhcms.com/mobanzhizuo/8.html" target="_blank">
+    XYHCMS3.0~3.3标签大全，点击 进入</a></p>
+	<p style="color:red;">
+      <a href="http://www.xyhcms.com/help2/4.html" target="_blank">XYHCMS2.x/XYHCMS1.x标签大全，点击 进入</a></p>
+   
+    <h2 style="background:#2196f3;color:#ffffff; padding:5px;">
+    <strong>全局标签-简单标签</strong>
+</h2>
+<p>
+注：全局标签所有页面均可调用<br/>
+&nbsp;&lt;yang:sitename /&gt; 网站名称<br/>
+&nbsp;&lt;yang:sitetitle /&gt;　网站标题<br/>
+&nbsp;&lt;yang:siteurl /&gt;　网站地址<br/>
+&nbsp;&lt;yang:sitekeywords /&gt; 网站关键字<br/>
+&nbsp;&lt;yang:sitedescription /&gt; 网站描述<br/>
+&nbsp;&lt;yang:beian /&gt;网站备案号<br/>
+&nbsp;&lt;yang:address /&gt;　联系地址<br/>
+&nbsp;&lt;yang:phone /&gt;　联系电话 &nbsp;<br/>
+&nbsp;&lt;yang:copyright /&gt;　网站版权<br/>
+&nbsp;&lt;yang:searchurl /&gt;　搜索中心网址(可提交查询)<br/>
+&nbsp;&lt;yang:gbookurl /&gt;　留言本网址<br/>
+&nbsp;&lt;yang:gbookaddurl /&gt;　留言提交网址<br/>
+&nbsp;&lt;yang:vcodeurl /&gt;　验证码图片地址<br/>
+&nbsp;&lt;yang:online /&gt;　在线客服<br/>
+&nbsp;&lt;yang:stats /&gt;　站点统计<br>
+</p>
+<p>
+&nbsp;&lt;yang:cfg name=&#39;名称标识&#39; /&gt; 通用配置标签<span style="color:red">[v3.5新增]</span><br>
+使用示例：
+<br/>
+<pre>网站备案号： &lt;yang:cfg name='CFG_BEIAN' /&gt;<br>联系地址： &lt;yang:cfg name='CFG_ADDRESS' /&gt;<br>联系电话： &lt;yang:cfg name='CFG_PHONE' /&gt;<br>网站版权： &lt;yang:cfg name='CFG_POWERBY' /&gt;<br>站点统计： &lt;yang:cfg name='CFG_STATS' /&gt;</pre>
+</p>
+<h2 style="background:#2196f3;color:#ffffff; padding:5px;">
+    全局标签-多属性(参数)标签
+</h2>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    list标签 | 获取指定文档[文章|图片|产品|]列表
+</h3>
+<pre>&lt;yang:list typeid=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; flag=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; pageroll=&#39;&#39; pagetheme=&#39;&#39; fieldflag=&#39;&#39;&gt;
+  {$list.id}编号
+  {$list.title}标题
+  {$list.color}标题颜色
+  {$list.publish_time}发布时间
+  ...
+  ...标签字段
+&lt;/yang:list&gt;</pre>
+<p>
+<strong>标签属性说明：</strong><br/>
+  [1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color:red"><span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span></span>；<br/>
+[2] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[3] infolen=&#39;&#39; 表示内容简介长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[4] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[6] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[7] orderby=&#39;&#39; 表示排序方法，如 <br/>orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>
+[8] keyword=&#39;&#39; 表示关键字搜索相关文档；<br/>
+[9] fieldflag=&#39;&#39; 表示是否显示全部字段(0否|1是)(如content,picture_urls默认不显示)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[10] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+[11] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>
+[12] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+[13] pagetheme=&#39;&#39; 表示分页显示内容样式[pagetheme默认值：&#39; %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%&#39;]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>&quot;%HEADER% %NOW_PAGE% %TOTAL_ROW% %TOTAL_PAGE% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%&quot; 中的样式自由组合</p>
+<p>
+    <strong>标签字段：</strong><br/>
+	[1]标签字段调用方法，如获取title字段：<br/>{$list.title} 或 {$list[&#39;title&#39;]} 或 {$list[&quot;title&quot;}<br/>
+	[2]文章模型的字段：<br/>
+    id,title(标题),short_title(副标题), color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+  [3]图片模型的字段：id,title(标题),color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+  [4]产品模型的字段：id,title(标题),color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic,price(价格),market_price(市场价),brand(品牌),units(单位),specification(规格),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+	[5]软件下载模型的字段：id,title(标题),color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),update_log(更新日志),version(软件版本),soft_type(软件类型),language(软件语言),os(运行环境),file_size(软件大小),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+  [6]当指定pagesize时，为分页显示。分页标签为{$page},放到list标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>
+	[1]普通调用
+</p>
+<pre>&lt;yang:list typeid=&#39;1&#39; titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+   &lt;li&gt;&lt;a href=&quot;{$list.url}&quot;&gt;{$list.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:list&gt;</pre>
+<p>
+    注解：获取栏目id为1的6条记录，标题只取30个字<br/><br/>
+	[2]多栏目调用
+</p>
+<pre>&lt;yang:list typeid=&#39;1,2,3&#39; limit=&#39;20&#39;&gt;
+   &lt;li&gt;&lt;a href=&quot;{$list.url}&quot;&gt;{$list.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:list&gt;</pre>
+<p>
+    注解：获取栏目id为1,2,3的20条记录<br/>
+    <br/>
+	[3]分页调用
+</p>
+<pre>&lt;yang:list typeid=&#39;1&#39; titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$list.url}&quot;&gt;{$list.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:list&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<p>
+    注解：获取栏目id为1分页列表，每页显示6条记录，标题只取30个字<br/>
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    artlist标签 | 获取指定文章列表
+</h3>
+<p>
+    [用法与list标签相同，但只针对文章模型]
+</p>
+<pre>&lt;yang:artlist typeid=&#39;&#39; arcid=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; flag=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; fieldflag=&#39;&#39;&gt;
+  {$artlist.id}编号
+  {$artlist.title}标题
+  ...
+  ...标签字段
+&lt;/yang:artlist&gt;</pre>
+<p>
+<strong>标签属性说明：</strong><br/>
+[1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[2] arcid=&#39;&#39; 表示文档ID，可指定多个文档ID用“，”分割，<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[3] titlelen=&#39;&#39; 表示标题长度 <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[4] infolen=&#39;&#39; 表示内容简介长度 <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[6] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[7] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[8] orderby=&#39;&#39; 表示排序方法<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>，如 <br/>orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>
+[9] keyword=&#39;&#39; 表示关键字搜索相关文档 <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[10] fieldflag=&#39;&#39; 表示是否显示全部字段(0否|1是)(如content默认不显示)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[11] limit=&#39;&#39; 表示获取记录数(默认值为10) <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+[12] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>
+[13] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+[14] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$artlist.title} 或 {$artlist[&#39;title&#39;]} 或 {$artlist[&quot;title&quot;}<br/>[2]可用字段(文章)：<br/>
+id,title(标题),short_title(副标题), color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+[3]当指定pagesize时，为分页显示。分页标签为{$page},放到artlist标签外</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:artlist typeid=&#39;1&#39; titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$artlist.url}&quot;&gt;{$artlist.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:artlist&gt;</pre>
+<p>
+    注解：获取文章栏目id为1的6条记录，标题只取30个字<br/><br/>[2]分页调用<br/>
+</p>
+<pre>&lt;yang:artlist typeid=&#39;1&#39; titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$artlist.url}&quot;&gt;{$artlist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:artlist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<p>
+    注解：获取文章栏目id为1分页列表，每页显示6条记录，标题只取30个字
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    piclist标签 | 获取指定图片文档列表
+</h3>
+<p>
+    [用法与list标签相同，但只针对图片模型]
+</p>
+<pre>&lt;yang:piclist typeid=&#39;&#39; arcid=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; fieldflag=&#39;&#39;&gt;
+  {$piclist.id}编号
+  {$piclist.title}标题 
+  ...
+  ...标签字段
+&lt;/yang:piclist&gt;</pre>
+<p>
+<strong>标签属性说明：</strong><br/>
+[1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[2] arcid=&#39;&#39; 表示文档ID，可指定多个文档ID用“，”分割<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[3] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[4] infolen=&#39;&#39; 表示内容简介长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[6] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[7] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[8] orderby=&#39;&#39; 表示排序方法，如 <br/>
+orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>
+[9] keyword=&#39;&#39; 表示关键字搜索相关文档；<br/>
+[10] fieldflag=&#39;&#39; 表示是否显示全部字段(0否|1是)(如content,picture_urls默认不显示)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[11] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>
+limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+[12] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>
+[13] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+[14] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+<br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$piclist.title} 或 {$piclist[&#39;title&#39;]} 或 {$piclist[&quot;title&quot;}<br/>
+[2]可用字段：<br/>id,title(标题),color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+[3]当指定pagesize时，为分页显示。分页标签为{$page},放到piclist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:piclist typeid=&#39;1&#39; titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$piclist.url}&quot;&gt;{$piclist.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:piclist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:piclist typeid=&#39;1&#39; titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$piclist.url}&quot;&gt;{$piclist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:piclist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    prolist标签 | 获取指定产品列表
+</h3>
+<p>
+    [用法与list标签相同，但只针对产品模型]
+</p>
+<pre>&lt;yang:prolist typeid=&#39;&#39; arcid=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; fieldflag=&#39;&#39;&gt;
+  {$prolist.id}编号
+  {$prolist.title}标题
+  ...
+  ...标签字段
+&lt;/yang:prolist&gt;</pre>
+<p>
+<strong>标签属性说明：</strong><br/>
+[1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[2] arcid=&#39;&#39; 表示文档ID，可指定多个文档ID用“，”分割<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[3] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[4] infolen=&#39;&#39; 表示内容简介长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[6] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[7] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[8] orderby=&#39;&#39; 表示排序方法，如 <br/>
+orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>
+[9] keyword=&#39;&#39; 表示关键字搜索相关文档；<br/>
+[10] fieldflag=&#39;&#39; 表示是否显示全部字段(0否|1是)(如content,picture_urls默认不显示)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[11] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>
+limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+[12] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>
+[13] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+[14] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+<br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$prolist.title} 或 {$prolist[&#39;title&#39;]} 或 {$prolist[&quot;title&quot;}<br/>[2]可用字段：<br/>id,title(标题),color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic,price(价格),market_price(市场价),brand(品牌),units(单位),specification(规格),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>
+[3]当指定pagesize时，为分页显示。分页标签为{$page},放到prolist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:prolist typeid=&#39;1&#39; titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$prolist.url}&quot;&gt;{$prolist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:prolist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:prolist typeid=&#39;1&#39; titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$prolist.url}&quot;&gt;{$prolist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:prolist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    soflist标签 | 获取指定软件下载列表
+</h3>
+<p>
+    [用法与list标签相同，但只针对软件下载模型]
+</p>
+<pre>&lt;yang:soflist typeid=&#39;&#39; arcid=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; fieldflag=&#39;&#39;&gt;
+  {$soflist.id}编号
+  {$soflist.title}标题
+  ...
+  ...标签字段
+&lt;/yang:soflist&gt;</pre>
+<p>
+<strong>标签属性说明：</strong><br/>
+[1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[2] arcid=&#39;&#39; 表示文档ID，可指定多个文档ID用“，”分割<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[3] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[4] infolen=&#39;&#39; 表示内容简介长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[6] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[7] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[8] orderby=&#39;&#39; 表示排序方法，如 <br/>
+orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>
+[9] keyword=&#39;&#39; 表示关键字搜索相关文档；<br/>
+[10] fieldflag=&#39;&#39; 表示是否显示全部字段(0否|1是)(如content,picture_urls,updatelog,downlink默认不显示)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[11] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>
+limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+[12] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>
+[13] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+[14] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><span style=""><br/>
+<br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$soflist.title} 或 {$soflist[&#39;title&#39;]} 或 {$soflist[&quot;title&quot;}<br/>[2]可用字段：<br/>id,title(标题),color(标题颜色),publish_time(发布时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),update_log(更新日志),version(软件版本),soft_type(软件类型),language(软件语言),os(运行环境),file_size(软件大小),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到soflist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:soflist typeid=&#39;1&#39; titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$soflist.url}&quot;&gt;{$soflist.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:soflist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:soflist typeid=&#39;1&#39; titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$soflist.url}&quot;&gt;{$soflist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:soflist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    slist标签 | 全局搜索文档列表
+</h3>
+<pre>&lt;yang:slist typeid=&#39;&#39; modelid=&#39;&#39; arcid=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39;&gt;
+  {$slist.id}编号
+  {$slist.title}标题
+  ...
+  ...标签字段
+&lt;/yang:slist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+  [1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+  [2] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+  [3] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[4] infolen=&#39;&#39; 表示内容简介长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+  [4] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+  [6] orderby=&#39;&#39; 表示排序方法，如 <br/>orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>[7] keyword=&#39;&#39; 表示关键字搜索相关文档；<br/>[8] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[9] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[10] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)[可选<span style="">]</span><br/>[11] pagetheme=&#39;&#39; 表示分页显示内容样式[可选<span style="">]</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$slist.title} 或 {$slist[&#39;title&#39;]} 或 {$slist[&quot;title&quot;}<br/>[2]可用字段：<br/>id,title(标题),short_title(副标题),color(标题颜色),publish_time(发布时间),update_time(更新时间),click(点击数),description(摘要),litpic(缩略图),filename(文件名称),flag(自定义属性),jump_url(跳转网址),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到slist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:slist keyword=&#39;开心&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$slist.url}&quot;&gt;{$slist.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:slist&gt;</pre>
+<p>
+    注解：搜索“开心”相关的文档，只获取6条记录
+  </p>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:slist keyword=&#39;开心&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$slist.url}&quot;&gt;{$slist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:slist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<p>
+    注解：搜索“开心”相关的文档，每页显示6条记录
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    spelist标签 | 获取指专题列表
+</h3>
+<pre>&lt;yang:spelist typeid=&#39;&#39; flag=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; pointstart=&#39;&#39; pointend=&#39;&#39; orderby=&#39;&#39; keyword=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39;&gt;
+  {$spelist.id}编号
+  {$spelist.title}标题
+  ...
+  ...标签字段
+&lt;/yang:spelist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+	[1] typeid=&#39;&#39; 表示栏目ID，可指定多个栏目ID用“，”分割。在列表模板和文档模板中可以不指定（表示当前所在栏目）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+	[2] flag=&#39;&#39; 表示专题属性(a图片|b头条|c推荐|d特荐|e幻灯|f跳转|g保留)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[3] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[4] infolen=&#39;&#39; 表示内容简介长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；
+    <br/>
+	[4] pointstart=&#39;&#39; 表示权重开始值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[5] pointend=&#39;&#39;表示权重结束值(不填写为不限)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+	[6] orderby=&#39;&#39; 表示排序方法，如 <br/>orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>[7] keyword=&#39;&#39; 表示关键字搜索相关文档；<br/>[8] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[9] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[10] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)[可选<span style="">]</span><br/>[11] pagetheme=&#39;&#39; 表示分页显示内容样式[可选<span style="">]</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$spelist.title} 或 {$spelist[&#39;title&#39;]} 或 {$spelist[&quot;title&quot;}<br/>[2]可用字段：<br/>id,title(标题),short_title(副标题),color(标题颜色),publish_time(发布时间),update_time(更新时间),click(点击数),description(摘要),litpic(缩略图),filename(文件名称),flag(自定义属性),jump_url(跳转网址),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到spelist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:spelist titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$spelist.url}&quot;&gt;{$spelist.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:spelist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:spelist titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$spelist.url}&quot;&gt;{$spelist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:spelist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    navlist标签 | 获取导航列表
+</h3>
+<p>
+    [注：导航列表即是状态为显示的栏目列表]
+</p>
+<pre>&lt;yang:navlist typeid=&#39;&#39;&gt;
+  {$navlist.id}栏目ID
+  {$navlist.name}栏目名称
+  {$navlist.url}栏目地址
+  ...
+  ...标签字段
+&lt;/yang:navlist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] typeid=&#39;&#39; 表示栏目ID，在列表模板和文档模板中可以不指定（表示当前所在栏目）,typeid=&#39;0&#39; 为顶级栏目；<br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取name字段：<br/>{$navlist.name} 或 {$navlist[&#39;name&#39;]} 或 {$navlist[&quot;name&quot;}<br/>[2]可用字段(栏目)：<br/>
+    id,name(栏目名称),ename(栏目别名),pid(父级ID),seo_title(SEO 标题), keywords(关键字),description(描述),cat_pic(栏目图片),style(栏目样式),model_id(所属模型ID),status(状态),sort(排序值),url(文档地址)<br/><br/><strong>例子：</strong></p>
+<pre>&lt;yang:navlist typeid=&#39;0&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$navlist.url}&quot;&gt;{$navlist.name}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:navlist&gt;</pre>
+<p>
+    <br/>
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    catlist标签 | 获取栏目(分类)列表
+</h3>
+<pre>&lt;yang:catlist typeid=&#39;&#39; type=&#39;&#39; limit=&#39;&#39; flag=&#39;&#39; modelid=&#39;&#39;&gt;
+  {$catlist.id}栏目ID
+  {$catlist.name}栏目名称
+  {$catlist.url}栏目地址
+  ...
+  ...标签字段
+&lt;/yang:catlist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+    [1] typeid=&#39;&#39; 表示栏目ID，在列表模板和文档模板中可以不指定（表示当前所在栏目）,typeid=&#39;0&#39; 为顶级栏目<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+    [2] type=&#39;&#39; 有3个可选值，son|self|top, (默认为son)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>type=&#39;son&#39;表示下级栏目,type=&#39;self&#39;表示同级栏目,type=&#39;top&#39;顶级栏目(忽略typeid的值)；<br/>
+    [3] limit=&#39;&#39; 表示获取记录数(默认值为10)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[4] flag=&#39;&#39; 表示显示内容(默认是0)；可选择0　或1<br/>flag=&#39;0&#39;表示栏目列表中不显示链接和单页，flag=&#39;1&#39; 全部显示<br/>[5] modelid=&#39;&#39; 表示同模型下的所有栏目<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取name字段：<br/>{$catlist.name} 或 {$catlist[&#39;name&#39;]} 或 {$catlist[&quot;name&quot;}<br/>[2]可用字段(栏目)：<br/>
+id,name(栏目名称),ename(栏目别名),pid(父级ID),seo_title(SEO 标题), keywords(关键字),description(描述),cat_pic(栏目图片),style(栏目样式),model_id(所属模型ID),status(状态),sort(排序值),url(文档地址)</p>
+<p>
+    <strong>例子：</strong>
+</p>
+<pre>&lt;yang:catlist typeid=&#39;0&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$catlist.url}&quot;&gt;{$catlist.name}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:catlist&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    type标签 | 获取栏目信息
+</h3>
+<pre>&lt;yang:type typeid=&#39;&#39; level=&#39;&#39;&gt;
+  {$type.id}栏目ID
+  {$type.name}栏目名称
+  {$type.url}栏目地址
+  ...
+  ...标签字段
+&lt;/yang:type&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+ &nbsp;[1] typeid=&#39;&#39; 表示栏目ID<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>
+ &nbsp;[2] level=&#39;&#39; 有3个可选值(默认为self)。<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>
+ <br/>level=&#39;self&#39; 表示自己(默认),level=&#39;top&#39;表示对应顶级栏目,level=&#39;parent&#39;表示对应父级栏目；<br/>
+ <br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取title字段：<br/>{$type.title} 或 {$type[&#39;title&#39;]} 或 {$type[&quot;title&quot;}<br/>[2]可用字段(栏目)：<br/>
+id,name(栏目名称),ename(栏目别名),pid(父级ID),seo_title(SEO 标题), keywords(关键字),description(描述),cat_pic(栏目图片),style(栏目样式),model_id(所属模型ID),status(状态),sort(排序值),url(文档地址)</p>
+<p>
+    <strong>例子：</strong>
+</p>
+<pre>&lt;yang:type typeid=&#39;1&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$type.url}&quot;&gt;{$type.name}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:type&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    typenum标签 | 获取指定栏目的文档数量
+</h3>
+<pre>&lt;yang:typenum typeid=&#39;&#39;/&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+ &nbsp;[1] typeid=&#39;&#39; 表示栏目ID<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>
+ <br/>
+</p>
+<p>
+    <strong>例子：</strong>
+</p>
+<pre>&lt;yang:typenum typeid=&#39;1&#39;/&gt;</pre>
+  <p>
+    注解：调取栏目id为1的文档数
+  </p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    announcelist标签 | 获取公告信息列表
+</h3>
+<pre>&lt;yang:announcelist titlelen=&#39;&#39; infolen=&#39;&#39; orderby=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39;&gt;
+  {$announcelist.id}ID
+  {$announcelist.title}标题
+  ...
+  ...标签字段
+&lt;/yang:announcelist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+    [2] infolen=&#39;&#39; 表示内容长度；当使用时，公告内容中的html标记将被清除<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+    [3] orderby=&#39;&#39; 表示排序方法(默认按开始时间降序)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>，如 <br/>orderby=&#39;post_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;post_time ASC&#39;(发布时间升序)；<br/>
+    [4] limit=&#39;&#39; 表示获取记录数<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+    [5] pagesize=&#39;&#39; 表示获取记录数<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>，分页列表专用,pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[6] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>[7] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取title字段：<br/>{$announcelist.title} 或 {$announcelist[&#39;title&#39;]} 或 {$announcelist[&quot;title&quot;}<br/>[2]可用字段：<br/>id,title(标题),content(内容),starttime(开始时间),endtime(结束时间), post_time(发布时间)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到announcelist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用<br/>
+</p>
+<pre>&lt;yang:announcelist limit=&#39;1&#39;&gt;
+  {$announcelist.content}
+&lt;/yang:announcelist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:announcelist pagesize=&#39;10&#39;&gt;
+  {$announcelist.title}
+&lt;/yang:announcelist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    flink标签 | 获取友情链接列表
+</h3>
+<pre>&lt;yang:flink typeid=&#39;&#39; orderby=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39;&gt;
+  {$flink.id}ID
+  {$flink.name}名称
+  {$flink.url}地址
+  ...
+  ...标签字段
+  &lt;/yang:flink&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] typeid=&#39;&#39; 表示友情链接类型[0首页|1内页]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[2] orderby=&#39;&#39; 表示排序方法(默认按开始时间降序)，如 <br/>orderby=&#39;post_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;post_time ASC&#39;(发布时间升序)；<br/>[3] limit=&#39;&#39; 表示获取记录数(默认是10)；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[4] pagesize=&#39;&#39; 表示获取记录数，分页列表专用,pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[5] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>[6] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取title字段：<br/>{$flink.title} 或 {$flink[&#39;title&#39;]} 或 {$flink[&quot;title&quot;}<br/>[2]可用字段：<br/>id,name(名称),url(网站地址),logo,description(描述)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到flink标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用<br/>调出最新一条记录
+</p>
+<pre>&lt;yang:flink limit=&#39;5&#39;&gt;
+  {$flink.name}
+&lt;/yang:flink&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:flink pagesize=&#39;10&#39;&gt;
+  {$flink.name}
+&lt;/yang:flink&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    freeblock标签 | 获取自由块内容<span style="">[原来为block标签]</span>
+</h3>
+<pre>&lt;yang:freeblock name=&#39;&#39; infolen=&#39;&#39; textflag=&#39;&#39; /&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] name=&#39;&#39; 表示自由块的名称<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>[2] infolen=&#39;&#39; 表示内容长度；当使用时，内容中的html标记将被清除<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[3] textflag=&#39;&#39; 表示是否是文本方法强制输出(针对图片，默认为0[图片]，1为图片文本地址)(0|1)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/><br/><br/><strong>标签字段：</strong><br/>[1]无；<br/>
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]
+调出名称为&quot;我的2&quot; 的自由块内容
+</p>
+<pre>&lt;yang:freeblock name=&#39;我的2&#39; /&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    field标签 | 获取指定栏目、单页、文档(文章|产品|图片)的某个字段
+</h3>
+<pre>&lt;yang:field name=&#39;&#39; typeid=&#39;&#39; artid=&#39;&#39; infolen=&#39;&#39; imgindex=&#39;&#39; imgwidth=&#39;&#39; imgheight=&#39;&#39; /&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] name=&#39;&#39; 表示字段名<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>[2] typeid=&#39;&#39; 表示栏目ID<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>[3] artid=&#39;&#39; 表示文档(内容)ID，当不填写，或为0的时候，则表示单页或栏目<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[4] infolen=&#39;&#39; 表示字段值长度；当使用时，字段值中的html标记将被清除<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[5] imgindex=&#39;&#39; 表示图片索引(仅字段是图片时使用)；索引从0开始[图]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[6] imgwidth=&#39;&#39; 表示图片宽度(仅字段是图片时使用)[图]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[7] imgheight=&#39;&#39; 表示图片高度(仅字段是图片时使用)[图]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/><br/><br/><strong>标签字段：</strong><br/>[1]无(字段直接是在标签中使用，不能独立使用)；<br/>
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]
+调出id为1的单页的内容
+</p>
+<pre>&lt;yang:field name=&#39;content&#39; typeid=&#39;1&#39; /&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    mobileauto标签 | 手机访问跳转(需要后台开启手机跳转才生效)
+</h3>
+<pre>&lt;yang:mobileauto flag=&#39;&#39; /&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] flag=&#39;&#39; 表示跳转方式(默认为0)(0_自动判断|1_php跳转|2_js跳转)[选填]；<br/><br/><br/><strong>标签字段：</strong><br/>[1]无；<br/>
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]
+自动判断手机访问跳转
+</p>
+<pre>&lt;yang:mobileauto flag=&#39;&#39; /&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    datelist标签 | 获文档存档日期(分类)列表|Blog专用
+</h3>
+<pre>&lt;yang:datelist modelid=&#39;&#39; limit=&#39;&#39;&gt;
+  {$datelist.arc_num}文档数量
+  {$datelist.arc_year}存档年份
+  {$datelist.arc_month}存档月份
+  &lt;/yang:datelist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] modelid=&#39;&#39; 表示模型ID(默认为1)；<br/>[2] limit=&#39;&#39; 表示获取记录数(默认是10)；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取title字段：<br/>{$datelist.arc_num} 或 {$datelist[&#39;arc_num&#39;]} 或 {$datelist[&quot;arc_num&quot;}<br/>[2]可用字段：<br/>arc_num(文档数量),arc_year(存档年份),arc_month(存档月份)
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用<br/>调出最新一条记录
+</p>
+<pre>&lt;yang:datelist limit=&#39;10&#39;&gt;
+  &lt;li&gt;&lt;a href=&#39;{$datelist.url}&#39;&gt;{$datelist.arc_year}年{$datelist.arc_month}[{$datelist.arc_num}]&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:flink&gt;</pre>
+<hr/>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    archivelist标签 | 获存档列表|Blog专用
+</h3>
+<pre>&lt;yang:archivelist modelid=&#39;&#39; year=&#39;&#39; month=&#39;&#39; titlelen=&#39;&#39; infolen=&#39;&#39; orderby=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; pageroll=&#39;&#39; pagetheme=&#39;&#39;&gt;
+  {$archivelist.id}编号
+  {$archivelist.title}标题
+  {$archivelist.color}标题颜色
+  {$archivelist.publish_time}发布时间
+  ...
+  ...标签字段
+  &lt;/yang:archivelist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] modelid=&#39;&#39; 表示模型ID(默认为1)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[2] year=&#39;&#39; 表示存档年份<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[3] month=&#39;&#39; 表示存档月份<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[4] titlelen=&#39;&#39; 表示标题长度 <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[5] infolen=&#39;&#39; 表示内容简介长度 <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[6] orderby=&#39;&#39; 表示排序方法<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>，如 <br/>orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>[7] limit=&#39;&#39; 表示获取记录数(默认值为10) <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[8] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[9] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>[10] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$archivelist.title} 或 {$archivelist[&#39;title&#39;]} 或 {$archivelist[&quot;title&quot;}<br/>[2]公共字段：<br/>{$archivelist_time.year}(年份),{$archivelist_time.month}(月份),{$archivelist_time.flag}(存在日期起始标志)<br/> &nbsp;[3]文章模型的字段：<br/>id,title(标题),short_title(副标题), color(标题颜色),publish_time(发布时间),click(点击数),description(摘要),litpic(缩略图),cid(栏目id),cate_name(栏目名称),ename(栏目别名),modelid(模型id),url(文档地址)<br/>[4]图片模型的字段：id,title,color,publish_time,click,description,litpic,cid,cate(栏目名称),ename(栏目别名),modelid(模型id),url(文档地址)<br/>[5]产品模型的字段：id,title,color,publish_time,click,description,litpic,price(市场价),market_price(市场价),brand(品牌),units(单位),specification(规格),cid,cate(栏目名称),ename(栏目别名),modelid(模型id),url(文档地址)<br/>[6]当指定pagesize时，为分页显示。分页标签为{$page},放到archivelist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:archivelist modelid=&#39;1&#39; titlelen=&#39;30&#39; limit=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$archivelist.url}&quot;&gt;{$archivelist.title}&lt;/a&gt;&lt;/li&gt;
+&lt;/yang:archivelist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:archivelist modelid=&#39;1&#39; titlelen=&#39;30&#39; pagesize=&#39;6&#39;&gt;
+  &lt;li&gt;&lt;a href=&quot;{$archivelist.url}&quot;&gt;{$archivelist.title}&lt;/a&gt;&lt;/li&gt;
+  &lt;/yang:archivelist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    gbooklist标签 | 获取留言本信息列表
+</h3>
+<pre>&lt;yang:gbooklist showflag=&#39;&#39; orderby=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; pageroll=&#39;&#39; pagetheme=&#39;&#39;&gt;
+  {$gbooklist.id}ID
+  {$gbooklist.username}姓名
+  ...
+  ...标签字段
+&lt;/yang:gbooklist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+    [1] showflag=&#39;&#39; 是否全部显示(默认为0，只显示已审核的)[0显示审核|1全部显示]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>
+    [2] orderby=&#39;&#39; 表示排序方法(默认按ID降序)，如 <br/>orderby=&#39;post_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;post_time ASC&#39;(发布时间升序)；<br/>
+    [3] limit=&#39;&#39; 表示获取记录数；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+    [4] pagesize=&#39;&#39; 表示获取记录数，分页列表专用,pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[5] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)[可选<span style="">]</span><br/>[6] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取title字段：<br/>{$gbooklist.content} 或 {$gbooklist[&#39;content&#39;]} 或 {$gbooklist[&quot;content&quot;}<br/>[2]可用字段：<br/>id,username(姓名),tel(电话),email(邮箱),homepage(主页),qq,ip(IP地址),post_time(留言时间),reply_time(回复时间),status(状态),,content(内容),reply(回复内容),user_id(会员id)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},gbooklist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用<br/>
+</p>
+<pre>&lt;yang:gbooklist limit=&#39;1&#39;&gt;
+  {$gbooklist.content}
+&lt;/yang:gbooklist&gt;</pre>
+<p>
+    [2]分页调用
+</p>
+<pre>&lt;yang:gbooklist pagesize=&#39;10&#39;&gt;
+  {$gbooklist.content}
+&lt;/yang:gbooklist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    reviewlist标签 | 获取指定评论列表
+</h3>
+<pre>&lt;yang:reviewlist modelid=&#39;&#39; arcid=&#39;&#39; type=&#39;&#39; userid=&#39;&#39; orderby=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; pageroll=&#39;&#39; pagetheme=&#39;&#39;&gt;
+  {$reviewlist.id}编号
+  {$reviewlist.postid}文档ID
+  {$reviewlist.modelid}模型ID
+  {$reviewlist.title}文档标题
+  ...
+  ...标签字段
+&lt;/yang:reviewlist&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>
+    [1] modelid=&#39;&#39; 表示模型ID（表示当前所在模型）<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>[必填：对应指定的文档时]；<br/>
+    [2] arcid=&#39;&#39; 表示文档ID<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>[必填：对应指定的文档时]；<br/>
+    [3] showflag='' 是否全部显示(默认为0，只显示已审核的)[0显示审核|1全部显示]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>  
+    [4] type=&#39;&#39; 表示调用方式(0|1)(默认为0)，0为普通方式(顺序调用,无child字段)，1为特殊方式(有child字段，child的数组值为评论的回复列表) <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+    [5] userid=&#39;&#39; 表示用户id,该用户的所有评论 <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+    [6] orderby=&#39;&#39; 表示排序方法<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>，如 <br/>orderby=&#39;post_time DESC&#39;(评论时间降序)；<br/>orderby=&#39;post_time ASC&#39;(评论时间升序)；<br/>[7] limit=&#39;&#39; 表示获取记录数(默认值为10) <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[8] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[9] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>[9] pagetheme=&#39;&#39; 表示分页显示内容样式<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$reviewlist.title} 或 {$reviewlist[&#39;title&#39;]} 或 {$reviewlist[&quot;title&quot;}<br/>[2]可用字段：<br/>id,post_id(文档id),title(文档标题),username(评论者名称),face(头像),email(邮箱),ip,post_time(评论时间),content(评论内容),pid(上级评论ID),model_id(模型id),model_name(模型),table_name(表名),user_id(会员id),child(特殊调用才有此字段，为评论回复列表)<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到reviewlist标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:reviewlist modelid=&#39;1&#39; arcid=&#39;7&#39; limit=&#39;6&#39;&gt;
+  &lt;p&gt;{$reviewlist.username}:{$reviewlist.content}&lt;/p&gt;
+&lt;/yang:reviewlist&gt;</pre>
+<p>
+    注解：获取模型为1（即文章模型）,文档id为7，6条评论记录<br/><br/>[2]分页调用<br/>
+</p>
+<pre>&lt;yang:reviewlist modelid=&#39;1&#39; arcid=&#39;7&#39;　pagesize=&#39;6&#39;&gt;
+  &lt;p&gt;{$reviewlist.username}:{$reviewlist.content}&lt;/p&gt;
+&lt;/yang:reviewlist&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<p>
+    注解：获取模型为1（即文章模型）,文档id为7，每页显示6条记录
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    abc标签 | 获取指定广告
+</h3>
+<pre>&lt;yang:abc id=&#39;&#39; limit=&#39;&#39;&gt;
+  {$abc.id}编号
+  {$abc.title}广告标题
+  ...
+  ...标签字段
+&lt;/yang:abc&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] id=&#39;&#39; 表示广告位ID<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>[2] limit=&#39;&#39; 表示获取记录数(默认值为后台设置的显示广告数的值) <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>limit=&#39;7&#39;(获取7条记录)<br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$abc.title} 或 {$abc[&#39;title&#39;]} 或 {$abc[&quot;title&quot;}<br/>[2]可用字段：<br/>id,title(广告名称),content(内容[文字]|图片地址[图片]|flash地址[flash]),url(网址),width(广告长度),height(广告高度)
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:abc id=&#39;1&#39;&gt;
+  &lt;p&gt;&lt;a href=&quot;{$abc.url}&quot;&gt;&lt;img src=&quot;{$abc.content}&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/yang:abc&gt;</pre>
+<p>
+    注解：获取广告位为1的图片广告<br/>
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    ad标签 | 获取指定广告
+</h3>
+<pre>&lt;yang:ad id=&#39;&#39; flag=&#39;&#39; /&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] id=&#39;&#39; 表示广告位ID<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>[2] flag=&#39;&#39; 表示调用方式(0|1) <span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>flag=&#39;0&#39;(为html调用，可以不写)<br/>flag=&#39;1&#39;(为js调用) <br/><br/><strong>标签字段：</strong><br/>[1]无
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]html调用
+</p>
+<pre>&lt;yang:ad id=&#39;1&#39; /&gt;</pre>
+<p>
+    <br/> &nbsp;[2]js调用
+</p>
+<pre>&lt;yang:ad id=&#39;1&#39; flag=&#39;1&#39; /&gt;</pre>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    datatable标签 | (单)多表查询
+</h3>
+<pre>&lt;yang:datatable table=&#39;&#39; field=&#39;&#39; joinwhere=&#39;&#39; where=&#39;&#39; orderby=&#39;&#39; limit=&#39;&#39; pagesize=&#39;&#39; pageroll=&#39;&#39; pagetheme=&#39;&#39;&gt;
+  {$datatable.id}编号
+  ...
+  ...标签字段
+&lt;/yang:datatable&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1] table=&#39;&#39; 表示查询的数据表名(无前缀)，多表以&quot;|&quot;分割（如table=&#39;表1|表2&#39;）<span style="color: #ffffff;background-color: #FF5722;padding: 2px 5px;">必填</span>；<br/>[2] field=&#39;&#39; 表示要查询的表字段名(同名的字段以&quot;,&quot;分割，字段名前不带表名)，多表以&quot;|&quot;分割(field=&#39;表1的字段1,字段2|表2的字段1,字段2&#39;)，[单表选填][多表必填]；<br/>[3] joinwhere=&#39;&#39; 表示多表查询关联条件，多表查询专用，多表以&amp;quot;|&amp;quot;分割，查询条件中的字段必须带表名[多表必填]；<br/>[4] where=&#39;&#39; 表示查询条件，条件中字段必须带表名<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>[5] orderby=&#39;&#39; 表示排序方法，如 <br/>orderby=&#39;publish_time DESC&#39;(发布时间降序)；<br/>orderby=&#39;publish_time ASC&#39;(发布时间升序)；<br/>[6] limit=&#39;&#39; 表示获取记录数(默认值为10)；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[7] pagesize=&#39;&#39; 表示获取记录数，分页列表专用.pagesize优先级高于limit,当有pagesize,忽略limit属性<br/>[8] pageroll=&#39;&#39; 表示分页中数字链接的个数(默认是5，老版本为3)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>[9] pagetheme=&#39;&#39; 表示分页显示内容样式[pagetheme默认值：&#39; %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%&#39;]<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>&quot;%HEADER% %NOW_PAGE% %TOTAL_ROW% %TOTAL_PAGE% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%&quot; 中的样式自由组合
+</p>
+<p>
+    <strong>标签字段：</strong><br/>[1]标签字段调用方法，如获取title字段：<br/>{$datatable.title} 或 {$datatable[&#39;title&#39;]} 或 {$datatable[&quot;title&quot;}<br/>[2]字段：<br/>根据查询的表所包含的字段<br/>[3]当指定pagesize时，为分页显示。分页标签为{$page},放到datatable标签外
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]普通调用
+</p>
+<pre>&lt;yang:datatable table=&#39;article|category&#39; field=&#39;title, cid, aid|name AS cate_name&#39; joinwhere=&#39;article.cid=category.id&#39; limit=&#39;10&#39;&gt;
+  &lt;li&gt;{$datatable.title}--栏目：{$datatable.cate_name}&lt;/li&gt; 
+&lt;/yang:datatable&gt;</pre>
+<p>
+    注解：article与category表关联查询，获取10条记录<br/><br/>[2]分页调用
+</p>
+<pre>&lt;yang:datatable table=&#39;article|category&#39; field=&#39;title, cid, aid|name AS cate_name&#39; joinwhere=&#39;article.cid=category.id&#39; pagesize=&#39;10&#39;&gt;
+  &lt;li&gt;{$datatable.title}--栏目：{$datatable.cate_name}&lt;/li&gt; 
+&lt;/yang:datatable&gt;
+&lt;div&gt;{$page}&lt;div&gt;</pre>
+<p>
+    注解：article与category表关联查询，每页显示10条记录<br/>
+</p>
+<hr/>
+<h2 style="background:#2196f3;color:#ffffff; padding:5px;">
+    列表|内容页通用标签（针对列表页和文档内容页）
+</h2>
+<p>
+    [注：单页是列表页的一种特殊情况]<br/>
+ &nbsp;[注：内容页包含文章内容页|产品内容页|图片内容页]<br/>
+ &nbsp;&lt;yang:position /&gt; 当前位置<br/>
+ &nbsp;{$title} 列表标题|内容标题(如果栏目设置了seotitle，则为SEO标题)<br/>
+ &nbsp;{$keywords} 列表|内容关键词<br/>
+ &nbsp;{$description} 列表|内容摘要
+</p>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    {$cate.字段}标签 | 当前所属栏目信息
+</h3>
+<p>
+    <strong>调用方法</strong>：<br/>{$cate.id} 栏目id, {$cate.name} 栏目名称，{$cate.url} 栏目地址，{$cate.keywords} 栏目关键字，{$cate.description} 栏目描述，<br/>{$cate.modelid}　所属模型ID
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    单页专用标签属性（针对单页）
+</h3>
+<p>
+    {$cate.content} 单页内容<br/>
+</p>
+<hr/>
+<h2 style="background:#2196f3;color:#ffffff; padding:5px;">
+    列表专用标签（针对列表页和单页）
+</h2>
+<p>
+    {$cid} 当前栏目id
+</p>
+<hr/>
+<h2 style="background:#2196f3;color:#ffffff; padding:5px;">
+    内容页专用标签
+</h2>
+<p>
+    [注：内容页包含文章(内容)页|产品(内容)页|图片(内容)页]
+</p>
+<p>
+    &lt;yang:prev titlelen=&#39;&#39; notitle=&#39;&#39; target=&#39;&#39; /&gt;　上一篇文章<br/>
+</p>
+<p>
+<strong>标签属性说明：</strong><br/>
+[1] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[2] notitle=&#39;&#39; 表示无上一篇时显示的文字(默认为"第一篇")<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[3] target=&#39;&#39; 表示链接打开方式(a标签的target属性值)(默认为空)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+</p>
+<p>
+      &lt;yang:next titlelen=&#39;&#39; notitle=&#39;&#39; target=&#39;&#39; /&gt;　下一篇文章
+</p>
+<p>
+<strong>标签属性说明：</strong><br/>
+[1] titlelen=&#39;&#39; 表示标题长度<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[2] notitle=&#39;&#39; 表示无下一篇文章时显示的文字(默认为"最后一篇")<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+[3] target=&#39;&#39; 表示链接打开方式(a标签的target属性值)(默认为空)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
+</p>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    {$content.字段}标签　|　文档内容信息
+</h3>
+<p>
+    {$content.字段}中的字段　根据所对应的模型(文章|产品|图片|软件下载)不同，有所不同<br/><br/>
+    <strong>{$content.字段} 文章页字段有：</strong><br/>id(文章id)，title(标题)，short_title(副标题)，color(标题颜色)，keywords(关键字)，description(摘要描述)<br/>litpic(文章缩略图)，litpic(文章缩略图)，content(内容)，publish_time(发布时间)，<br/>click(文章点击数)，comment_flag(文章是否允许评论)，cid (所属栏目id)<br/><br/>
+    <strong>{$content.字段} 产品页字段有：</strong><br/>id,title,color,keywords,litpic,picture_urls(图片数组),content,description,price(价格),market_price(市场价),brand(品牌),units(单位),specification,publish_time,update_time,click,cid,comment_flag<br/><br/>
+    <strong>{$content.字段} 图片页字段有：</strong><br/>id,title,color,keywords,litpic,description,picture_urls,content ,publish_time,update_time,click,cid,comment_flag<br/><br/>
+    <strong>{$content.字段} 软件下载页字段有：</strong><br/>id,title(标题),color(标题颜色),keywords,publish_time(发布时间),update_time(更新时间),click(点击数),comment_flag(是否允许评论),description(摘要),litpic(缩略图),update_log(更新日志),down_link(下载地址数组),version(软件版本),soft_type(软件类型),language(软件语言),os(运行环境),file_size(软件大小),cid(栏目id),cate_name(栏目名称),ename(栏目别名),model_id(模型id),url(文档地址)<br/><br/>
+    <strong>调用方法：</strong><br/>{$content.id} <br/>{$content.title} <br/>{$content.keywords} ....
+</p>
+<hr/>
+<h3 style=" background:#FCFCD3;border:1px dotted #ccc; padding:5px;">
+    click标签 | 获取文档点次数
+</h3>
+<pre>&lt;yang:click /&gt;</pre>
+<p>
+    <strong>标签属性说明：</strong><br/>[1]无；<br/><br/><strong>标签字段：</strong><br/>[1]无；<br/>
+</p>
+<p>
+    <strong>例子：</strong><br/>[1]
+当前文档点击数
+</p>
+<pre>&lt;yang:click /&gt;</pre>
+<p>&nbsp;
+    
+</p>
+</body>
