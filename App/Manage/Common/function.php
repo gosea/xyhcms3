@@ -479,7 +479,7 @@ function parse_config_attr($string, $type = 1) {
 
 	//select 并且是选择样式
 	if (false !== strpos($string, 'select')) {
-		if (false !== strpos($string, '__CFG_THEMESTYLE__')) {
+		if (false !== strpos($string, '__CFG_THEMESTYLE__') || false !== strpos($string, '_CFG_THEMESTYLE_')) {
 			$tmp   = get_file_folder_List('./Public/Home/', 1);
 			$value = array();
 			foreach ($tmp as $key => $val) {
@@ -487,14 +487,14 @@ function parse_config_attr($string, $type = 1) {
 			}
 
 			return $value;
-		} elseif (false !== strpos($string, '__CFG_MOBILE_THEMESTYLE__')) {
+		} elseif (false !== strpos($string, '__CFG_MOBILE_THEMESTYLE__') || false !== strpos($string, '_CFG_MOBILE_THEMESTYLE_')) {
 			$tmp   = get_file_folder_List('./Public/Mobile/', 1);
 			$value = array();
 			foreach ($tmp as $key => $val) {
 				$value[$val] = $val;
 			}
 			return $value;
-		} elseif (false !== strpos($string, '__ONLINE_CFG_STYLE__')) {
+		} elseif (false !== strpos($string, '__ONLINE_CFG_STYLE__') || false !== strpos($string, '_ONLINE_CFG_STYLE_')) {
 
 			$tmp   = get_file_folder_List('./Data/static/js_plugins/online/', 2, '*.css');
 			$tmp   = str_replace('.css', '', $tmp);

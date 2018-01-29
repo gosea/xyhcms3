@@ -20,7 +20,7 @@
  * @Author: gosea <gosea199@gmail.com>
  * @Date:   2014-06-21 10:00:00
  * @Last Modified by:   gosea
- * @Last Modified time: 2017-10-02 22:24:21
+ * @Last Modified time: 2018-01-29 17:12:16
  */
 namespace Manage\Controller;
 
@@ -264,6 +264,9 @@ class DatabaseController extends CommonController {
 
 				if ($tem[$end] == ";") {
 					$sql .= $tem;
+					if (false !== strpos($sql, '__CFG_THEMESTYLE__') || false !== strpos($sql, '__CFG_MOBILE_THEMESTYLE__') || false !== strpos($sql, '__ONLINE_CFG_STYLE__')) {
+						$sql = str_replace(array('__CFG_THEMESTYLE__', '__CFG_MOBILE_THEMESTYLE__', '__ONLINE_CFG_STYLE__'), array('_CFG_THEMESTYLE_', '_CFG_MOBILE_THEMESTYLE_', '_ONLINE_CFG_STYLE_'), $sql);
+					}
 					$M->execute($sql); //query
 					$sql = "";
 					$execute++;
