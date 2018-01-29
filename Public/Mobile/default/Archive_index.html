@@ -27,7 +27,7 @@
 	<if condition="$archivelist_time['flag'] eq 1">
 	<li class="title">{$archivelist_time.year}年{$archivelist_time.month}月</li>
 	</if>
-	<li><h5><a href="{$archivelist.url}" target="_blank">[{$archivelist.publish_time|get_date='d日',###}]{$archivelist.title}</a></h5><div class="summary"></div></li>
+	<li><h5><a href="{$archivelist.url}" target="_blank">[{$archivelist.publish_time|get_date='d日'}]{$archivelist.title}</a></h5><div class="summary"></div></li>
   </yang:archivelist>	
 
   </ul>

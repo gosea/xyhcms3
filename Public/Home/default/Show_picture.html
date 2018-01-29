@@ -51,7 +51,7 @@
 	<h3 class="nybt"><i>您当前的位置：<yang:position /> </i><span>{$cate.name}</span></h3>
 	<div class="xbox wzzw"> 
 		<div class="biaoti" align="center">{$content.title}</div>
-		<div style="border:1px solid #FFE0B4; background:#ffeed5; text-align:center;">发布时间:{$content.publish_time|get_date='Y-m-d',###} 丨 阅读次数:<yang:click /> </div>
+		<div style="border:1px solid #FFE0B4; background:#ffeed5; text-align:center;">发布时间:{$content.publish_time|get_date='Y-m-d'} 丨 阅读次数:<yang:click /> </div>
 			<div class="wzzw lh">
 			<foreach name="content['picture_urls']" item="v">
 				<p><img src="{$v['url']|get_picture=600}" /></p>

@@ -20,7 +20,7 @@
  * @Author: gosea <gosea199@gmail.com>
  * @Date:   2014-06-21 10:00:00
  * @Last Modified by:   gosea
- * @Last Modified time: 2017-11-08 15:31:08
+ * @Last Modified time: 2018-01-29 09:58:32
  */
 namespace Home\Controller;
 
@@ -66,7 +66,7 @@ class ListController extends HomeCommonController {
 
 		$this->assign('cate', $self);
 		$this->assign('flag_son', Category::hasChild($cate, $cid)); //是否包含子类
-		$this->assign('title', empty($self['seotitle']) ? $self['name'] : $self['seotitle']);
+		$this->assign('title', empty($self['seo_title']) ? $self['name'] : $self['seo_title']);
 		$this->assign('keywords', $self['keywords']);
 		$this->assign('description', $self['description']);
 		$this->assign('cid', $cid);

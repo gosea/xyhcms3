@@ -52,7 +52,7 @@
                             <td>{$v.id}</td>
                             <td class="aleft">{$v.name} [{$v.remark|str2sub=10}]</td>
                             <td>{$v.block_type|get_item_value='blocktype',###}</td>
-                            <td class="aleft">&lt;yang:block name='{$v.name}' /&gt; </td>
+                            <td class="aleft">&lt;yang:freeblock name='{$v.name}' /&gt; </td>
                             <td class="text-right">
                             <a href="{:U('edit',array('id' => $v['id']), '')}" class="label label-success">编辑</a>
                             <a href="javascript:;" onclick="toConfirm('{:U('del',array('id' => $v['id']), '')}', '确实要彻底删除吗？')" class="label label-danger">删除</a>                            

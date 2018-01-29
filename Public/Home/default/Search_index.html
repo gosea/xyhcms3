@@ -54,7 +54,7 @@
 	<div>请输入关键词，然后点搜索！</div>
 	<else/>	
 	<yang:slist modelid='$model_id' typeid='$type_id' keyword='$keyword' pagesize='10'>
-	<li><span>{$slist.publish_time|get_date='Y-m-d',###}</span><a href="{$slist.url}" target="_blank">{$slist.title}</a></li>
+	<li><span>{$slist.publish_time|get_date='Y-m-d'}</span><a href="{$slist.url}" target="_blank">{$slist.title}</a></li>
 	</yang:slist>
 	</if>
 	
