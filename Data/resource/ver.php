@@ -1,5 +1,5 @@
 <?php
 return array(
 	'XYHCMS_VER'  => '3.5',
-	'XYHCMS_TIME' => '20180129',
+	'XYHCMS_TIME' => '20180130',
 );
