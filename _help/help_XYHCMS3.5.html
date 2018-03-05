@@ -403,7 +403,10 @@ limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2
     <strong>标签属性说明：</strong><br/>
     [1] typeid=&#39;&#39; 表示栏目ID，在列表模板和文档模板中可以不指定（表示当前所在栏目）,typeid=&#39;0&#39; 为顶级栏目<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/>
     [2] type=&#39;&#39; 有3个可选值，son|self|top, (默认为son)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span><br/>type=&#39;son&#39;表示下级栏目,type=&#39;self&#39;表示同级栏目,type=&#39;top&#39;顶级栏目(忽略typeid的值)；<br/>
-    [3] limit=&#39;&#39; 表示获取记录数(默认值为10)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>[4] flag=&#39;&#39; 表示显示内容(默认是0)；可选择0　或1<br/>flag=&#39;0&#39;表示栏目列表中不显示链接和单页，flag=&#39;1&#39; 全部显示<br/>[5] modelid=&#39;&#39; 表示同模型下的所有栏目<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取name字段：<br/>{$catlist.name} 或 {$catlist[&#39;name&#39;]} 或 {$catlist[&quot;name&quot;}<br/>[2]可用字段(栏目)：<br/>
+    [3] limit=&#39;&#39; 表示获取记录数(默认值为10)<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；limit可以两种表示方法：<br/>limit=&#39;7&#39;(获取7条记录)<br/>limit=&#39;1,7&#39;(是指从第1+1(即2)条开始，取7条记录)<br/>
+    [4] flag=&#39;&#39; 表示显示内容(默认是0)；可选择0　或1<br/>flag=&#39;0&#39;表示栏目列表中不显示链接和单页，flag=&#39;1&#39; 全部显示<br/>
+    [5] hideflag=&#39;&#39; 表示显示隐藏的(默认是1)；可选择0　或1<br/>flag=&#39;0&#39;表示不显示隐藏的，flag=&#39;1&#39; 显示隐藏的<br/>
+    [6] modelid=&#39;&#39; 表示同模型下的所有栏目<span style="color: #ffffff;background-color: #028625;padding: 2px 5px;">可选</span>；<br/><br/><strong>标签字段：</strong><br/>[1]标签字段调用方法,如获取name字段：<br/>{$catlist.name} 或 {$catlist[&#39;name&#39;]} 或 {$catlist[&quot;name&quot;}<br/>[2]可用字段(栏目)：<br/>
 id,name(栏目名称),ename(栏目别名),pid(父级ID),seo_title(SEO 标题), keywords(关键字),description(描述),cat_pic(栏目图片),style(栏目样式),model_id(所属模型ID),status(状态),sort(排序值),url(文档地址)</p>
 <p>
     <strong>例子：</strong>
