@@ -5,6 +5,6 @@
   'DB_USER' => 'root',
   'DB_PWD' => '',
   'DB_NAME' => 'xyhcms',
-  'DB_PREFIX' => 'yy_',
+  'DB_PREFIX' => 'xyh_',
   'DB_CHARSET' => 'utf8',
 );?>

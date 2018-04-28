@@ -39,6 +39,6 @@ return array(
 	'LOG_RECORD'           => false, // 开启日志记录---正式可以关掉
 	'LOG_LEVEL'            => 'EMERG,ALERT,CRIT,ERR,WARN,NOTICE', // 只记录EMERG ALERT CRIT ERR 错误，WARN,NOTICE,INFO,DEBUG,SQL
 
-	'DATA_CACHE_PREFIX'    => 'xms5214_', //S缓存 随机前缀
+	'DATA_CACHE_PREFIX'    => 'CAzJSzw_', //S缓存 随机前缀
 
 );
