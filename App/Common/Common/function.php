@@ -425,7 +425,7 @@ function get_abc($id, $flag = 0) {
 		$where = array('aid' => $id,
 			'status'             => 1,
 			'start_time'         => array('lt', date('Y-m-d H:i:s')),
-			'end_time'           => array('gt', date('Y-md H:i:s')),
+			'end_time'           => array('gt', date('Y-m-d H:i:s')),
 		);
 		$detail = M('abcDetail')->where($where)->order('sort')->limit($abc['num'])->select();
 		if (!$detail) {

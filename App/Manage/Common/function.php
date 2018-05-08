@@ -288,8 +288,8 @@ function insert_att_index(&$content, &$first_pic, $arc_id, $model_id, $model_nam
 	}
 
 	foreach ($old_att_ids as $key => $val) {
-		//删除不存的旧记录
-		if (empty($att_id) || !in_array($val, $att_id)) {
+		//删除不存的旧记录(与新的att_id比较)
+		if (empty($new_att_id) || !in_array($val, $new_att_id)) {
 			M('AttachmentIndex')->where(array('att_id' => $val, 'arc_id' => $arc_id, 'model_id' => $model_id, 'desc' => $model_name))->delete();
 		}
 	}

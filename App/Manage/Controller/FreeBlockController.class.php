@@ -86,6 +86,9 @@ class FreeBlockController extends CommonController {
 		}
 
 		$data['content'] = $content[$data['block_type']];
+		if (stripos($data['content'], '<?php') !== false) {
+			$data['content'] = preg_replace('/<\?php(.+?)\?>/i', '', $data['content']);
+		}
 
 		if ($id = M('FreeBlock')->add($data)) {
 
@@ -123,8 +126,9 @@ class FreeBlockController extends CommonController {
 
 		$vo = M($actionName)->find($id);
 		//非富文本,引号的问题
-		$vo['content'] = str_replace("&#39;", "'", $vo['content']); //只针对input,textarea,ueditor切换
-		$vo['content'] = htmlspecialchars($vo['content']);
+		$vo['content2'] = htmlspecialchars(preg_replace('/<script[\s\S]*?<\/script>/i', '', $vo['content']));
+		$vo['content']  = str_replace("&#39;", "'", $vo['content']); //只针对input,textarea,ueditor切换
+		$vo['content']  = htmlspecialchars($vo['content']);
 
 		$this->assign('type', '修改自由块');
 		$this->assign('blocktypelist', get_item('blocktype'));
@@ -152,6 +156,9 @@ class FreeBlockController extends CommonController {
 		}
 
 		$data['content'] = $content[$data['block_type']];
+		if (stripos($data['content'], '<?php') !== false) {
+			$data['content'] = preg_replace('/<\?php(.+?)\?>/i', '', $data['content']);
+		}
 
 		if (M('FreeBlock')->where(array('name' => $data['name'], 'id' => array('neq', $id)))->find()) {
 			$this->error('自由块名称已经存在!');
