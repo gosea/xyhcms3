@@ -1,3 +1,5 @@
 .idea
 composer.lock
+App/Common/Conf/db.php
+App/Common/Conf/config.php
 *.log
