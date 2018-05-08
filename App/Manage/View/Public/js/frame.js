@@ -34,27 +34,30 @@ $(function(){
 
 
 	
-	function get_cate(){
-		var url = $('#menu').attr('data-url');
-		$.get(url,
-            {
-                'pid' : 0, 
-                'rnd' : Math.floor(111+Math.random()*100000)
+	function get_cate() {
+    var url = $('#menu').attr('data-url');
+    var listUl = $('#menu').find('dl[data-cid=6] ul');
+    if (listUl.length > 0) {
+        $.get(url, {
+                'pid': 0,
+                'rnd': Math.floor(111 + Math.random() * 100000)
             },
-            function(data){
-                var listUl = $('#dl_items_2_0 ul');
-                if(!isNaN(data.count) && data.count>0){
-                	listUl.text('');
+            function (data) {
+                if (!isNaN(data.count) && data.count > 0) {
+                    listUl.text('');
                 }
-                if(data.list && (typeof data.list == 'object')){
-                    $.each(data.list, function(i, v){
-                        var html = '<li><a href="'+v.url+'" target="main">'+v.name+'</a></li>';
+                if (data.list && (typeof data.list == 'object')) {
+                    $.each(data.list, function (i, v) {
+                        var html = '<li><a href="' + v.url + '" target="main">' + v.name + '</a></li>';
                         listUl.append(html);
                     });
                 }
-                               
-            },'json');
-	}
+
+            }, 'json');
+    }
+
+  }
+		
 
 	function bindQuickMenu(){//快捷菜单
 		$("#ac_qucikmenu").bind("mouseenter",function(){

@@ -7,7 +7,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <title>后台管理</title>
 <script type="text/javascript" src="__DATA__/static/js/jquery-1.11.3.min.js"></script>
-<script src="__PUBLIC__/js/frame.js?v201726" language="javascript" type="text/javascript"></script>
+<script src="__PUBLIC__/js/frame.js?v20180501" language="javascript" type="text/javascript"></script>
 <script type="text/javascript" src="__DATA__/static/jq_plugins/layer/layer.js"></script>
 <link href="__PUBLIC__/css/frame.css" rel="stylesheet" type="text/css" />
 
@@ -42,7 +42,7 @@
 <foreach name='menu' key='k' item='v'>
 <div id="items_left_menu_{$k}">
 	<volist name='v["child"]' key='k2' id='v2'>
-	<dl id="dl_items_{$k2}_{$k}">
+	<dl id="dl_items_{$k2}_{$k}" data-cid="{$v2['id']}">
 		<dt>{$v2.name}</dt>
 		<dd>
 		<ul>
