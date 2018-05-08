@@ -5,5 +5,3 @@ App/Common/Conf/config.php
 App/Runtime/*
 Install/install.lock
 *.log
-!uploads/img1/20171124/*
-uploads/img1/*
